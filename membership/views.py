@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import render, redirect, reverse
 import stripe
-# from .forms import MembershipDetailForm
+from .forms import MembershipDetailForm
 
 
 def chargeCustomer(request):
@@ -14,15 +14,14 @@ def chargeCustomer(request):
     return redirect(reverse('thankyou'))
 
 
-
 def stripee(request):
     return render(request, 'stripee.html')
 
 
 def membership(request):
-    initial = {
-        'first_name': request.user.first_name,
-        'email': request.user.email}
-    # form = MembershipDetailForm(initial)
-    context ={} #{'form': form}
+    # initial = {
+    #     'first_name': request.user.first_name,
+    #     'email': request.user.email}
+    form = MembershipDetailForm()
+    context = {'form': form}
     return render(request, 'membership.html', context)

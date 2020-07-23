@@ -1,8 +1,9 @@
 from django import forms
-# from .models import MembershipDetail
+from .models import MembershipDetail
 
-# class MembershipDetailForm(forms.ModelForm):
 
-#     class Meta:
-#         model = MembershipDetail
-#         fields = "__all__"
+class MembershipDetailForm(forms.ModelForm):
+
+    class Meta:
+        model = MembershipDetail
+        fields = "__all__"
