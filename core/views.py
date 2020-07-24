@@ -7,62 +7,40 @@ from .forms import UserPreferencesForm
 import stripe
 from .models import UserPreferences
 
-# stripe.api_key = "sk_test_51H4o50DLCEyNZL8YOpFgmi8jI0sWDslQ9GRkPZ12SqkglAkJiidioJGvV0MV0vEYNLVF7Mqd9qbvEhOEDyDslxzg00L3V56wUF"
-
-
-
-
-# def test_cookie(request):
-#     if not request.COOKIES.get('logged_in_user'):
-
-#         response.set_cookie('user_logged_in',request.user.username,max_age=30)
-#         return response
-#     else:
-#         response = HttpResponse('your fav team is {}'.format(request.COOKIES['team']))
-#         return response
-
-# set_cookie(key, value='', max_age=None, expires=None, path='/', domain=None, secure=None, httponly=False, samesite=None) :
-
-
-
-
-
-
-
-
-
-
 
 @login_required
 def home(request):
 
-    user_preferences,created = UserPreferences.objects.get_or_create(user=request.user)
+    user_preferences, created = UserPreferences.objects.get_or_create(
+        user=request.user)
+    user_preferences.user = request.user
+    user_preferences.save()
     if user_preferences.saved_user_prefereces:
         response = redirect('dashboard')
     else:
         response = redirect('user_preferences')
- 
+
     return response
 
 
 @login_required
 def dashboard(request):
-    response = render(request,'dashboard.html')
-    # response.set_cookie('logged_in_user',request.user.username,max_age=10)
+    response = render(request, 'dashboard.html')
     return response
-
-
-
 
 
 @login_required
 def user_preferences(request):
     form = UserPreferencesForm(request.POST or None)
     if form.is_valid():
+        user_preference = UserPreferences.objects.get(user=request.user)
+        user_preference.delete()
+
         instance = form.save(commit=False)
         instance.user = request.user
         instance.saved_user_prefereces = True
         instance.save()
+
         return redirect(reverse('thankyou'))
 
     context = {'form': form}
@@ -71,6 +49,3 @@ def user_preferences(request):
 
 def thankyou(request):
     return render(request, 'thankyou.html')
-
-
-

@@ -13,7 +13,7 @@ class Preference(models.Model):
 
 
 class UserPreferences(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='user')
     saved_user_prefereces = models.BooleanField(default=False)
     preferences = models.ManyToManyField(Preference)
 
