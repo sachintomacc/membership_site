@@ -5,3 +5,4 @@ from .models import *
 
 # admin.site.register(Title)
 admin.site.register(UserPreferences)
+admin.site.register(Preference)

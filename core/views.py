@@ -59,13 +59,10 @@ def dashboard(request):
 def user_preferences(request):
     form = UserPreferencesForm(request.POST or None)
     if form.is_valid():
-        preferences = UserPreferences.objects.get(user=request.user)
-        preferences.option_1 = form.cleaned_data.get('option_1')
-        preferences.option_2 = form.cleaned_data.get('option_2')
-        preferences.option_3 = form.cleaned_data.get('option_3')
-        preferences.user = request.user
-        preferences.saved_user_prefereces = True
-        preferences.save()
+        instance = form.save(commit=False)
+        instance.user = request.user
+        instance.saved_user_prefereces = True
+        instance.save()
         return redirect(reverse('thankyou'))
 
     context = {'form': form}
