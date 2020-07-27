@@ -11,3 +11,4 @@ class UserPreferencesForm(forms.ModelForm):
     class Meta:
         model = UserPreferences
         fields = ["preferences", ]
+        # fields = "__all__"

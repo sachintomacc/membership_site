@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'social_django',
     'social.apps.django_app.default',
     'core',
-    'donation',
     'membership',
 ]
 
@@ -123,7 +122,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles_dirs')]     
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles_dirs')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
@@ -189,4 +188,6 @@ SOCIAL_AUTH_INSTAGRAM_KEY = config('SOCIAL_AUTH_INSTAGRAM_KEY')
 SOCIAL_AUTH_INSTAGRAM_SECRET = config('SOCIAL_AUTH_INSTAGRAM_SECRET')
 SOCIAL_AUTH_INSTAGRAM_EXTRA_DATA = [('user', 'user'), ]
 
-SESSION_COOKIE_AGE = 60 * 60 * 24 #* config('LOGIN_DAYS_THRESHOLD')
+SESSION_COOKIE_AGE = 60 * 60 * 24  # * config('LOGIN_DAYS_THRESHOLD')
+
+STRIPE_KEY = "sk_test_51H4o50DLCEyNZL8YOpFgmi8jI0sWDslQ9GRkPZ12SqkglAkJiidioJGvV0MV0vEYNLVF7Mqd9qbvEhOEDyDslxzg00L3V56wUF"

@@ -1,37 +1,18 @@
-{% extends 'base.html' %}
-
-
-
-{% block title %}Donation{% endblock title %}
-  
-
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %} 
+{% block title %}Donation{% endblock title %} 
 
 {% block content %}
-    
 
 <h3>Donation</h3>
 
+<form method="POST" action="">
+    {% csrf_token %} 
+    {{form|crispy}}
 
+    <br />
 
-<form action="">
-
-
-    <div class="custom-control custom-radio">
-        <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-        <label class="custom-control-label" for="customRadio1">One Time</label>
-      </div>
-      <div class="custom-control custom-radio">
-        <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-        <label class="custom-control-label" for="customRadio2">Monthly Recurring</label>
-      </div>
-
-      <br>
-
-
-      <input type="submit" value="Proceed to Payment" class="btn btn-primary">
-
-
+    <input type="submit" value="Proceed to Payment" class="btn btn-primary" />
 </form>
 
 {% endblock content %}
-
